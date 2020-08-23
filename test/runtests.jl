@@ -1,5 +1,5 @@
 using jubart
-using Test
+using Test1
 
 @testset "jubart.jl" begin
     # 2x + 3y
