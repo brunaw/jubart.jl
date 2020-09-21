@@ -1,7 +1,7 @@
 module jubart
 
-include("function_add.jl")
+include("jubart_functions.jl")
 
-export my_f
+export juBart, predict_juBart, sim_friedman_simple
 
 end # module
