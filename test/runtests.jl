@@ -1,10 +1,6 @@
 using jubart
 using Test
 
-@test isa(sim_friedman_simple(100,5,0.01),Dict)
-
-aux=sim_friedman_simple(100,5,0.01)
-aux_model=juBart(aux["x"],aux["y"],2)
 
 @testset "jubart.jl" begin
     # Testing the friedman_simulation_function
@@ -38,6 +34,24 @@ aux_model=juBart(aux["x"],aux["y"],2)
 
     if(node_size_count==0) node_size_bol=true else node_size_bol=false end
 
+    # Veryfing the node boolean
     @test node_size_bol
+
+    # Veryfing NA in test model
+    @test !any(isnan,model_test["predictions"])
+
+
+    # Testing the predict function
+    prediction_test_model_all=predict_juBart(model_test,rand(100,10),"all") # Creating the all matrix
+    prediction_test_model_mean=predict_juBart(model_test,rand(100,10)) # Creating the prediction vector
+
+    # Verfying size
+    @test isa(prediction_test_model_all,Array{Union{Nothing,Float64},2})
+    @test isa(prediction_test_model_mean,Array{Float64,2})
+
+    # Veryfing NA
+    @test !any(isnan,prediction_test_model_all)
+    @test !any(isnan,prediction_test_model_mean)
+
 
 end

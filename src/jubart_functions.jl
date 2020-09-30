@@ -989,7 +989,7 @@ function predict_tree_model(tree_object::tree,x_new::Array{Float64,2})
 end
 
 
-function predict_jubart(jubart_model::Dict,x_predict::Array{Float64,2},type::String="mean")
+function predict_juBart(jubart_model::Dict,x_predict::Array{Float64,2},type::String="mean")
 
     new_jubart_model=deepcopy(jubart_model)
     n_iter=size(new_jubart_model["predictions"])[1]
